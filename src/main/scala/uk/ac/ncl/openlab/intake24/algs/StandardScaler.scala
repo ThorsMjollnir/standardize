@@ -1,3 +1,17 @@
+package uk.ac.ncl.openlab.intake24.algs
+
+/**
+  * Created by Tim Osadchiy on 30/04/2018.
+  */
+case class StandardScaler(withMean: Boolean = true, withStd: Boolean = true) {
+
+  def fit(matrix: Vector[Vector[Double]]) = {
+    StandardScaler.validateMatrix(matrix)
+    ScalerModel(withMean, withStd, StandardScaler.mean(matrix), StandardScaler.std(matrix), matrix.head.size)
+  }
+
+}
+
 /**
   * Created by Tim Osadchiy on 27/04/2018.
   */
@@ -46,15 +60,6 @@ object StandardScaler {
     tr.zipWithIndex.map { vi =>
       Math.sqrt(vi._1.map(x => Math.pow(x - mn(vi._2), 2)).sum / vi._1.size)
     }
-  }
-
-}
-
-case class StandardScaler(withMean: Boolean = true, withStd: Boolean = true) {
-
-  def fit(matrix: Vector[Vector[Double]]) = {
-    StandardScaler.validateMatrix(matrix)
-    ScalerModel(withMean, withStd, StandardScaler.mean(matrix), StandardScaler.std(matrix), matrix.head.size)
   }
 
 }

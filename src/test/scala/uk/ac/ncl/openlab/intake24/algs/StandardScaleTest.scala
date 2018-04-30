@@ -1,3 +1,5 @@
+package uk.ac.ncl.openlab.intake24.algs
+
 import org.scalactic.Equality
 import org.scalatest.FunSuite
 
